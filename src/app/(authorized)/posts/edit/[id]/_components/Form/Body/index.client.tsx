@@ -9,5 +9,7 @@ export const Body = () => {
     formId: FORM_ID,
   });
 
-  return <Textarea {...getInputProps(meta, { type: "text" })} />;
+  return (
+    <Textarea className="h-80" {...getInputProps(meta, { type: "text" })} />
+  );
 };

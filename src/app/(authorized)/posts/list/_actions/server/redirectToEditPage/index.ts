@@ -2,6 +2,6 @@
 
 import { redirect } from "next/navigation";
 
-export const redirectToEditPage = (id: string) => {
+export const redirectToEditPage = async (id: string) => {
   redirect(`/posts/edit/${id}`);
 };
