@@ -11,7 +11,11 @@ type Props = {
 
 export const TableDropdownMenu = ({ action }: Props) => {
   return (
-    <DropdownMenuItem key={action.label} onClick={action.action}>
+    <DropdownMenuItem
+      className="cursor-pointer hover:bg-gray-100"
+      key={action.label}
+      onClick={action.action}
+    >
       {action.label}
     </DropdownMenuItem>
   );
