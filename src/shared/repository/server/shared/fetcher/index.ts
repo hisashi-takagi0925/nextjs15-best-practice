@@ -1,6 +1,7 @@
 "use server";
 
 import { CustomHttpError } from "./customHttpError";
+import { errorHandler } from "./errorHandler";
 import { FetcherProps } from "./types";
 
 export const fetcher = async <T>({
@@ -21,6 +22,7 @@ export const fetcher = async <T>({
         ...options.headers,
       },
       body: body ? JSON.stringify(body) : undefined,
+      cache: "force-cache",
     });
 
     if (!response.ok) {
@@ -35,11 +37,7 @@ export const fetcher = async <T>({
     onSuccess?.(data);
     return data;
   } catch (error) {
-    if (error instanceof CustomHttpError) {
-      onError?.(error);
-    }
-    console.error(error);
-    return undefined;
+    errorHandler({ error, onError });
   } finally {
     onSettled?.();
   }

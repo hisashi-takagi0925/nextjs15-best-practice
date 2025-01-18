@@ -17,21 +17,22 @@ type Props = {
   confirmDialog: (dialog: Partial<Props["dialog"]>) => void;
 };
 
+const DEFAULT_DIALOG = {
+  title: "",
+  description: "",
+  submit: {
+    label: "OK",
+    onClick: () => {},
+  },
+  cancel: {
+    label: "キャンセル",
+    onClick: () => {},
+  },
+};
+
 const store = create<Props>()((set) => ({
   isOpen: false,
-  dialog: {
-    title: "",
-    description: "",
-    submit: {
-      label: "OK",
-      onClick: () => {},
-    },
-    cancel: {
-      label: "キャンセル",
-      onClick: () => set({ isOpen: false }),
-    },
-  },
-
+  dialog: DEFAULT_DIALOG,
   confirmDialog: (dialog: Partial<Props["dialog"]>) =>
     set((state) => ({
       dialog: {
@@ -41,12 +42,15 @@ const store = create<Props>()((set) => ({
           ...state.dialog.submit,
           onClick: () => {
             dialog.submit?.onClick();
-            set({ isOpen: false });
+            set({ isOpen: false, dialog: DEFAULT_DIALOG });
           },
         },
         cancel: {
           ...state.dialog.cancel,
           ...dialog.cancel,
+          onClick: () => {
+            set({ isOpen: false, dialog: DEFAULT_DIALOG });
+          },
         },
       },
       isOpen: true,

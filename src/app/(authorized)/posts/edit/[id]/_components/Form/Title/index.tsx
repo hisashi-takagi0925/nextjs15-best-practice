@@ -1,13 +1,23 @@
 "use client";
 
 import { getInputProps, useField } from "@conform-to/react";
+import { Input } from "@/shared/components/client/Input";
 import { FORM_ID } from "../index.client";
-import { Input } from "@/lib/shadcn/components/ui/input";
 
 export const Title = () => {
   const [meta] = useField<string>("title", {
     formId: FORM_ID,
   });
 
-  return <Input {...getInputProps(meta, { type: "text" })} />;
+  return (
+    <Input
+      label="タイトル"
+      placeholder="タイトルを入力してください"
+      maxLength={100}
+      currentLength={meta.value?.length}
+      required
+      errorMessage={"エラーです"}
+      {...getInputProps(meta, { type: "text" })}
+    />
+  );
 };
