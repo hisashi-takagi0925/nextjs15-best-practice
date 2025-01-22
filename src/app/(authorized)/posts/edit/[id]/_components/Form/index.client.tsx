@@ -5,13 +5,14 @@ import { FormProvider, useForm } from "@conform-to/react";
 export const FORM_ID = "post-edit-form";
 
 type Props = {
+  formId: string;
   post: Post;
   children: React.ReactNode;
 };
 
-export const Form = ({ post, children }: Props) => {
+export const Form = ({ formId, post, children }: Props) => {
   const [form] = useForm<Post>({
-    id: FORM_ID,
+    id: formId,
     defaultValue: post,
   });
 
