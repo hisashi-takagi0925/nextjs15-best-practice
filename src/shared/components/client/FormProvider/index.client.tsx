@@ -8,8 +8,6 @@ import {
 import { z } from "zod";
 import { parseWithZod } from "@conform-to/zod";
 
-export const FORM_ID = "post-edit-form";
-
 type Props<T> = {
   formId: string;
   defaultValue: DefaultValue<T>;
