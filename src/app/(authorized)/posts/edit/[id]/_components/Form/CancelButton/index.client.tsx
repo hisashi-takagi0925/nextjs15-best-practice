@@ -10,6 +10,7 @@ export const CancelButton = () => {
     <Button
       variant="outline"
       className="min-w-24 font-bold"
+      type="button"
       onClick={openDialog}
     >
       キャンセル

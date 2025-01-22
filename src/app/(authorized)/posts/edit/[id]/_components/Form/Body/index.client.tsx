@@ -10,6 +10,13 @@ export const Body = () => {
   });
 
   return (
-    <Textarea className="h-80" {...getInputProps(meta, { type: "text" })} />
+    <>
+      <Textarea className="h-80" {...getInputProps(meta, { type: "text" })} />
+      <div className="flex justify-end">
+        <p className="text-sm text-muted-foreground">
+          {meta.value?.length ?? 0}文字
+        </p>
+      </div>
+    </>
   );
 };

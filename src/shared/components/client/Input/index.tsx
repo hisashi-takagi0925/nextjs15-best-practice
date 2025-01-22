@@ -9,6 +9,9 @@ type Props = {
   maxLength?: number;
   currentLength?: number;
   errorMessage?: string;
+  name?: string;
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const Input = ({
@@ -19,6 +22,9 @@ export const Input = ({
   maxLength,
   currentLength,
   errorMessage,
+  name,
+  value,
+  onChange,
 }: Props) => {
   return (
     <div className={cn("flex flex-col gap-2 h-18", fullWidth && "w-full")}>
@@ -32,6 +38,9 @@ export const Input = ({
         placeholder={placeholder}
         required={required}
         maxLength={maxLength}
+        name={name}
+        value={value}
+        onChange={onChange}
       />
       <div className="flex justify-between">
         {errorMessage && (

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { WholeLayout } from "@/shared/components/server/layout/WholeLayout";
 
 import "./globals.css";
+import { ConfirmDialog } from "@/shared/components/client/ConfirmDialog";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <WholeLayout>{children}</WholeLayout>
+        <ConfirmDialog />
       </body>
     </html>
   );

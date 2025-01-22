@@ -14,7 +14,7 @@ export const Title = () => {
       label="タイトル"
       placeholder="タイトルを入力してください"
       maxLength={100}
-      currentLength={meta.value?.length}
+      currentLength={meta.value?.length ?? 0}
       required
       errorMessage={"エラーです"}
       {...getInputProps(meta, { type: "text" })}

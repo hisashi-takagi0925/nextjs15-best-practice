@@ -4,7 +4,6 @@ import { Title } from "./_components/Form/Title";
 import { Body } from "./_components/Form/Body/index.client";
 import { MainLayout } from "@/shared/components/server/layout/MainLayout";
 import { Button } from "@/lib/shadcn/components/ui/button";
-import { ConfirmDialog } from "@/shared/components/client/ConfirmDialog";
 import { CancelButton } from "./_components/Form/CancelButton/index.client";
 
 type Props = {
@@ -28,7 +27,6 @@ export default async function EditPost({ params }: Props) {
         <Form post={defaultValues}>
           <Title />
           <Body />
-          <ConfirmDialog />
         </Form>
       }
       cancelButton={<CancelButton />}
