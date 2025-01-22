@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## プロジェクト概要
+
+このリポジトリは、Next.js を使用したウェブアプリケーションのプロジェクトです。主にサーバーサイドレンダリングや静的サイト生成を活用し、SEO の最適化とパフォーマンスの向上を目指しています。Radix UI や Tailwind CSS などのライブラリを使用して、アクセシブルでカスタマイズ可能な UI を提供し、Zustand による状態管理を行っています。また、Conform を用いたフォームのバリデーションと状態管理、Zod による型安全なデータバリデーションを実現しています。
+
+このプロジェクトは、最新のウェブ技術を活用し、ユーザーエクスペリエンスの向上を目指しています。
 
 ## Getting Started
 
@@ -16,21 +20,133 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Next.js 15 App Router のベストプラクティス
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### データフェッチ
 
-## Learn More
+- **サーバーコンポーネントでデータを取得**: サーバーコンポーネントを使用してデータを取得することで、クライアント側の負荷を軽減し、パフォーマンスを向上させます。これにより、SEO の最適化も可能になります。
 
-To learn more about Next.js, take a look at the following resources:
+- **キャッシュ戦略**: データフェッチ時には、適切なキャッシュ戦略を設定することが重要です。`getStaticProps`や`getServerSideProps`を使用して、ページのキャッシュを制御し、ユーザーに最新のデータを提供します。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### コンポーネント分割
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **意味の通る最小単位の要素で分割**: コンポーネントは、再利用性と可読性を高めるために、意味のある最小単位で分割します。これにより、コードのメンテナンスが容易になり、バグの発生を防ぎます。
 
-## Deploy on Vercel
+### ディレクトリ構造
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **ツリー形式でのディレクトリ構造**: プロジェクトのディレクトリ構造は、以下のように整理されています。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+├── README.md
+├── components.json
+├── eslint.config.mjs
+├── next.config.ts
+├── package.json
+├── postcss.config.mjs
+├── tailwind.config.ts
+├── tsconfig.json
+├── .gitignore
+├── src
+│ ├── app
+│ │ ├── globals.css
+│ │ ├── layout.tsx
+│ │ ├── page.tsx
+│ │ └── (authorized)
+│ │ └── posts
+│ │ ├── layout.tsx
+│ │ └── edit
+│ │ └── [id]
+│ │ ├── page.tsx
+│ │ └── \_components
+│ │ └── Form
+│ │ ├── index.client.tsx
+│ │ ├── Title
+│ │ │ └── index.tsx
+│ │ ├── Body
+│ │ │ └── index.client.tsx
+│ │ └── CancelButton
+│ │ └── index.client.tsx
+│ ├── domains
+│ │ └── posts
+│ │ └── repository
+│ │ ├── getPost.ts
+│ │ └── getPosts
+│ │ └── tag.ts
+│ ├── lib
+│ │ └── shadcn
+│ │ └── components
+│ │ └── ui
+│ │ ├── button.tsx
+│ │ ├── dialog.tsx
+│ │ ├── dropdown-menu.tsx
+│ │ ├── input.tsx
+│ │ ├── separator.tsx
+│ │ ├── sheet.tsx
+│ │ ├── sidebar.tsx
+│ │ ├── skeleton.tsx
+│ │ ├── table.tsx
+│ │ ├── textarea.tsx
+│ │ └── tooltip.tsx
+│ ├── shared
+│ │ ├── actions
+│ │ │ └── client
+│ │ │ └── useConfirmDiaog
+│ │ │ └── index.ts
+│ │ └── components
+│ │ ├── server
+│ │ │ ├── Table
+│ │ │ │ └── index.tsx
+│ │ │ ├── layout
+│ │ │ │ └── MainLayout.tsx
+│ │ │ └── skeletons
+│ │ │ └── TableSkeleton
+│ │ │ └── index.tsx
+│ │ └── client
+│ │ ├── ConfirmDialog.tsx
+│ │ └── Input.tsx
+│ └── utils
+│ └── utils.ts
+└── .next
+```
+
+## 使用ライブラリと選定理由
+
+このプロジェクトでは、以下のライブラリを使用しています。それぞれの選定理由についても説明します。
+
+### Next.js
+
+- **選定理由**: Next.js は、React アプリケーションのサーバーサイドレンダリングや静的サイト生成を簡単に実現できるフレームワークです。SEO の最適化やパフォーマンスの向上が求められるプロジェクトに最適です。
+
+### Radix UI
+
+- **選定理由**: Radix UI は、アクセシブルでカスタマイズ可能な UI コンポーネントを提供します。アクセシビリティを重視した UI 開発が可能です。
+
+### Lucide Icons
+
+- **選定理由**: Lucide は、軽量でカスタマイズ可能なアイコンライブラリです。React コンポーネントとして簡単にアイコンを使用でき、デザインの一貫性を保つことができます。
+
+### Zustand
+
+- **選定理由**: Zustand は、シンプルでスケーラブルな状態管理ライブラリです。軽量でありながら、強力な状態管理機能を提供します。
+
+### Tailwind CSS
+
+- **選定理由**: Tailwind CSS は、ユーティリティファーストの CSS フレームワークで、迅速なスタイリングが可能です。プロジェクトのデザイン要件に柔軟に対応できます。
+
+### Class Variance Authority (CVA)
+
+- **選定理由**: CVA は、クラス名のバリアントを管理するためのライブラリです。コンポーネントのスタイルを柔軟に変更でき、デザインの一貫性を保つことができます。
+
+### Conform
+
+- **選定理由**: Conform は、フォームのバリデーションと状態管理を簡単に行うためのライブラリです。React と組み合わせて、フォームの管理を効率化します。また、サーバーアクションに対応しているため、サーバーサイドでの処理を簡単に統合できます。さらに、フォームの状態変更時の再レンダリングを最適化する機能を備えており、パフォーマンスの向上に貢献します。
+
+### Zod
+
+- **選定理由**: Zod は、スキーマベースのバリデーションライブラリで、TypeScript と組み合わせて型安全なデータバリデーションを実現します。
+
+### Next.js Cache
+
+- **選定理由**: Next.js のキャッシュ機能を利用することで、データの再検証やパフォーマンスの最適化が可能です。
+
+これらのライブラリは、プロジェクトの機能性とユーザーエクスペリエンスを向上させるために選定されています。
