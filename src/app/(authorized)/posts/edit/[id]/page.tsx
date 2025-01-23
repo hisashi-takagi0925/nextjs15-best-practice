@@ -1,10 +1,5 @@
 import { getPost } from "@/domains/posts/repository/getPost";
-import { Form } from "./_components/Form/index.client";
-import { Title } from "./_components/Form/Title";
-import { Body } from "./_components/Form/Body/index.client";
-import { FeatureContainerLayout } from "@/shared/components/server/layout/MainLayout";
-import { Button } from "@/lib/shadcn/components/ui/button";
-import { CancelButton } from "./_components/Form/CancelButton/index.client";
+import { PageContent } from "./_components/PageContent/index.client";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -20,21 +15,5 @@ export default async function EditPost({ params }: Props) {
     body: "",
   };
 
-  return (
-    <FeatureContainerLayout
-      title="編集"
-      content={
-        <Form post={defaultValues}>
-          <Title />
-          <Body />
-        </Form>
-      }
-      cancelButton={<CancelButton />}
-      submitButton={
-        <Button type="submit" className="min-w-24 font-bold">
-          保存
-        </Button>
-      }
-    />
-  );
+  return <PageContent data={defaultValues} />;
 }
