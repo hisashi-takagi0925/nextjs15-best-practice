@@ -1,19 +1,12 @@
-import { getPost } from "@/domains/posts/repository/getPost";
 import { PageContent } from "./_components/PageContent/index.client";
+import { generateFormValue } from "./_actions/server/generateFormValue";
 
 type Props = {
   params: Promise<{ id: string }>;
 };
 
 export default async function EditPost({ params }: Props) {
-  const id = (await params).id;
-  const post = await getPost(id);
-  const defaultValues = post ?? {
-    userId: 0,
-    id: 0,
-    title: "",
-    body: "",
-  };
+  const defaultValues = await generateFormValue({ params });
 
   return <PageContent data={defaultValues} />;
 }

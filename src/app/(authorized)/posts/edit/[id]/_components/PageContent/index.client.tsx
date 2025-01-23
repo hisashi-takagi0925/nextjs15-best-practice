@@ -6,6 +6,7 @@ import { Post } from "@/domains/posts/repository/getPosts/types";
 import { postSchema } from "@/domains/posts/schema";
 import { Title } from "./Title";
 import { useCancelForm } from "../../_actions/client/useCancelForm";
+import { updatePost } from "../../_actions/server/updatePost";
 
 export const FORM_ID = "post-edit-form";
 
@@ -24,9 +25,7 @@ export const PageContent = ({ data }: Props) => {
       schema={postSchema}
       submitButton={{
         label: "保存",
-        onSubmit: (formData) => {
-          console.log(formData);
-        },
+        onSubmit: updatePost,
       }}
       cancelButton={{
         label: "キャンセル",
