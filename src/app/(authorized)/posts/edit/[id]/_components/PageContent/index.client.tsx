@@ -5,8 +5,9 @@ import { Body } from "./Body/index.client";
 import { Post } from "@/domains/posts/repository/getPosts/types";
 import { postSchema } from "@/domains/posts/schema";
 import { Title } from "./Title";
-import { useCancelForm } from "../../_actions/client/useCancelForm";
 import { updatePost } from "../../_actions/server/updatePost";
+import { SubmitButton } from "./SubmitButton";
+import { CancelButton } from "./CancelButton/index.client";
 
 export const FORM_ID = "post-edit-form";
 
@@ -15,22 +16,15 @@ type Props = {
 };
 
 export const PageContent = ({ data }: Props) => {
-  const { openDialog } = useCancelForm();
-
   return (
     <InputFormLayout
       formId={FORM_ID}
       formTitle="編集"
       defaultValue={data}
       schema={postSchema}
-      submitButton={{
-        label: "保存",
-        onSubmit: updatePost,
-      }}
-      cancelButton={{
-        label: "キャンセル",
-        onClick: openDialog,
-      }}
+      submitButton={<SubmitButton />}
+      cancelButton={<CancelButton />}
+      onSubmit={updatePost}
     >
       <Title />
       <Body />

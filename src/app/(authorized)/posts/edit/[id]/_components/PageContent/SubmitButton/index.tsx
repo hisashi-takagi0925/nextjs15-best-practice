@@ -1,10 +1,9 @@
 "use client";
 
-import { Button } from "@/shared/components/client/Button";
-
+import { Button } from "@/lib/shadcn/components/ui/button";
 export const SubmitButton = () => {
   return (
-    <Button type="submit" className="min-w-24 font-bold">
+    <Button className="min-w-24 font-bold" type="submit">
       更新
     </Button>
   );
