@@ -8,8 +8,7 @@ import { Title } from "./Title";
 import { updatePost } from "../../_actions/server/updatePost";
 import { SubmitButton } from "./SubmitButton";
 import { CancelButton } from "./CancelButton/index.client";
-
-export const FORM_ID = "post-edit-form";
+import { FORM_ID } from "../../_constants";
 
 type Props = {
   data: Post;

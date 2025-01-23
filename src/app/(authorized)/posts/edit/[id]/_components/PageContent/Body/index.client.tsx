@@ -2,7 +2,7 @@
 
 import { getInputProps, useField } from "@conform-to/react";
 import { Textarea } from "@/lib/shadcn/components/ui/textarea";
-import { FORM_ID } from "../index.client";
+import { FORM_ID } from "../../../_constants";
 
 export const Body = () => {
   const [meta] = useField<string>("body", {
