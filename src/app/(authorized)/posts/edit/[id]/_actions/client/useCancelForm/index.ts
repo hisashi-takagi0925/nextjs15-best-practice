@@ -5,8 +5,8 @@ export const useCancelForm = () => {
   const router = useRouter();
   const { confirmDialog } = useConfirmDialog();
 
-  const cancel = () => {
-    router.back();
+  const cancelForm = () => {
+    router.push("/posts/list");
   };
 
   const openDialog = () => {
@@ -15,7 +15,7 @@ export const useCancelForm = () => {
       description: "キャンセルすると、フォームの内容は削除されます。",
       submit: {
         label: "戻る",
-        onClick: cancel,
+        onClick: cancelForm,
       },
     });
   };

@@ -2,6 +2,6 @@
 
 import { redirect } from "next/navigation";
 
-export const redirectToListPage = () => {
-  redirect(`/posts`);
+export const redirectToListPage = async () => {
+  redirect(`/posts/list`);
 };
