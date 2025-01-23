@@ -29,11 +29,12 @@ export const FormProvider = <T extends Record<string, unknown>>({
     onValidate({ formData }) {
       return parseWithZod(formData, { schema });
     },
+    shouldValidate: "onBlur",
   });
 
   return (
     <ConformFormProvider context={form.context}>
-      <form id={form.id} action={onSubmit}>
+      <form id={form.id} action={onSubmit} noValidate>
         {children}
       </form>
     </ConformFormProvider>

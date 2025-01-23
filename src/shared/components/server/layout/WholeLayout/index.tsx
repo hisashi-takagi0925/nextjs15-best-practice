@@ -3,9 +3,5 @@ type Props = {
 };
 
 export const WholeLayout = ({ children }: Props) => {
-  return (
-    <div className={`bg-off-white flex flex-col min-h-screen w-full  p-4`}>
-      {children}
-    </div>
-  );
+  return <div className={`bg-off-white h-full w-full  p-4`}>{children}</div>;
 };

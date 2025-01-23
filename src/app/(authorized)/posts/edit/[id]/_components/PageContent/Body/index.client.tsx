@@ -9,9 +9,11 @@ export const Body = () => {
     formId: FORM_ID,
   });
 
+  const { key, ...inputProps } = getInputProps(meta, { type: "text" });
+
   return (
     <>
-      <Textarea className="h-80" {...getInputProps(meta, { type: "text" })} />
+      <Textarea className="h-80" key={key} {...inputProps} />
       <div className="flex justify-end">
         <p className="text-sm text-muted-foreground">
           {meta.value?.length ?? 0}文字

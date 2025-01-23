@@ -9,6 +9,8 @@ export const Title = () => {
     formId: FORM_ID,
   });
 
+  const { key, ...inputProps } = getInputProps(meta, { type: "text" });
+
   return (
     <Input
       label="タイトル"
@@ -16,8 +18,10 @@ export const Title = () => {
       maxLength={100}
       currentLength={meta.value?.length ?? 0}
       required
-      errorMessage={"エラーです"}
-      {...getInputProps(meta, { type: "text" })}
+      errorMessage={meta.errors?.join(",").toString()}
+      defaultValue={meta.value}
+      key={key}
+      {...inputProps}
     />
   );
 };

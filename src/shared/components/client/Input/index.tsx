@@ -10,6 +10,7 @@ type Props = {
   currentLength?: number;
   errorMessage?: string;
   name?: string;
+  defaultValue?: string;
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
@@ -23,6 +24,7 @@ export const Input = ({
   currentLength,
   errorMessage,
   name,
+  defaultValue,
   value,
   onChange,
 }: Props) => {
@@ -39,6 +41,7 @@ export const Input = ({
         required={required}
         maxLength={maxLength}
         name={name}
+        defaultValue={defaultValue}
         value={value}
         onChange={onChange}
       />
