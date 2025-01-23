@@ -5,7 +5,7 @@ type Props = {
   submitButton?: React.ReactNode;
 };
 
-export const MainLayout = ({
+export const FeatureContainerLayout = ({
   title,
   content,
   cancelButton,

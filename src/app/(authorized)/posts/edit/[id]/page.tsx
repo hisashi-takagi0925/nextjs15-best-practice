@@ -2,7 +2,7 @@ import { getPost } from "@/domains/posts/repository/getPost";
 import { Form } from "./_components/Form/index.client";
 import { Title } from "./_components/Form/Title";
 import { Body } from "./_components/Form/Body/index.client";
-import { MainLayout } from "@/shared/components/server/layout/MainLayout";
+import { FeatureContainerLayout } from "@/shared/components/server/layout/MainLayout";
 import { Button } from "@/lib/shadcn/components/ui/button";
 import { CancelButton } from "./_components/Form/CancelButton/index.client";
 
@@ -21,7 +21,7 @@ export default async function EditPost({ params }: Props) {
   };
 
   return (
-    <MainLayout
+    <FeatureContainerLayout
       title="編集"
       content={
         <Form post={defaultValues}>
