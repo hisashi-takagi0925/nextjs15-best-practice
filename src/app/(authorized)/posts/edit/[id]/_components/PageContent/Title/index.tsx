@@ -9,10 +9,13 @@ export const Title = () => {
     formId: FORM_ID,
   });
 
+  console.log(meta);
+
   const { key, ...inputProps } = getInputProps(meta, { type: "text" });
 
   return (
     <Input
+      key={key}
       label="タイトル"
       placeholder="タイトルを入力してください"
       maxLength={100}
@@ -20,7 +23,6 @@ export const Title = () => {
       required
       errorMessage={meta.errors?.join(",").toString()}
       defaultValue={meta.value}
-      key={key}
       {...inputProps}
     />
   );

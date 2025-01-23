@@ -13,7 +13,10 @@ type Props<T> = {
   children: React.ReactNode;
   cancelButton: React.ReactNode;
   submitButton: React.ReactNode;
-  onSubmit: (formData: FormData) => void;
+  onSubmit: (
+    prevState: unknown,
+    formData: FormData
+  ) => Promise<null | undefined>;
 };
 
 export const InputFormLayout = <T extends Record<string, unknown>>({
