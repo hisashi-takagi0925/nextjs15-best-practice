@@ -36,7 +36,7 @@ export const InputFormLayout = <T extends Record<string, unknown>>({
       >
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-4">{children}</div>
-          <div className="flex justify-center p-4 items-center gap-8">
+          <div className="flex justify-center p-4 items-center gap-4">
             {cancelButton}
             {submitButton}
           </div>
