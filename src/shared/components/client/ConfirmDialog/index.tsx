@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/lib/shadcn/components/ui/button";
+
 import {
   Dialog,
   DialogContent,
@@ -9,6 +9,8 @@ import {
   DialogTitle,
 } from "@/lib/shadcn/components/ui/dialog";
 import { useConfirmDialog } from "@/shared/actions/client/useConfirmDiaog";
+import { SubmitButton } from "../Button/SubmitButton";
+import { CancelButton } from "../Button/CancelButton";
 
 export const ConfirmDialog = () => {
   const { isOpen, dialog } = useConfirmDialog();
@@ -21,21 +23,15 @@ export const ConfirmDialog = () => {
           <DialogDescription>{dialog.description}</DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          {dialog.cancel && (
-            <Button
-              onClick={dialog.cancel.onClick}
-              variant="outline"
-              className="min-w-24 font-bold"
-            >
-              {dialog.cancel.label}
-            </Button>
-          )}
-          <Button
-            onClick={dialog.submit.onClick}
-            className="min-w-24 font-bold"
-          >
-            {dialog.submit.label}
-          </Button>
+          <div className="flex justify-center items-center gap-4">
+            {dialog.cancel && (
+              <CancelButton onClick={dialog.cancel.onClick || (() => {})} />
+            )}
+            <SubmitButton
+              label={dialog.submit.label}
+              onClick={dialog.submit.onClick}
+            />
+          </div>
         </DialogFooter>
       </DialogContent>
     </Dialog>

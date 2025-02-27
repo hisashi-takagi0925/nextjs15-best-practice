@@ -9,6 +9,8 @@ export default {
     "./src/shared/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/lib/shadcn/components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  // shadcnのユーティリティインポートパスを指定
+  shadcnUtilsImportPath: "@/lib/shadcn/utils/utils",
   theme: {
   	extend: {
   		colors: {
