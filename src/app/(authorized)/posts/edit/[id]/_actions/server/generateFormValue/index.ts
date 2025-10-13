@@ -1,11 +1,11 @@
 import { getPost } from "@/domains/posts/repository/getPost";
 
 type Props = {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 };
 
 export const generateFormValue = async ({ params }: Props) => {
-  const id = (await params).id;
+  const id = params.id;
   const post = await getPost(id);
   const defaultValues = post ?? {
     userId: 0,
